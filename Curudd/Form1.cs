@@ -13,7 +13,7 @@ namespace Curudd
 {
     public partial class Form1 : Form
     {
-        SqlConnection conn = new SqlConnection(@"");
+        SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-NR11B30\SQLEXPRESS;Initial Catalog=pbd;Integrated Security=True");
         public Form1()
         {
             InitializeComponent();
@@ -21,8 +21,8 @@ namespace Curudd
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'userDataSet.users' table. You can move, or remove it, as needed.
-            this.usersTableAdapter.Fill(this.userDataSet.users);
+            // TODO: This line of code loads data into the 'pbdDataSet.Mahasiswa' table. You can move, or remove it, as needed.
+            this.mahasiswaTableAdapter.Fill(this.pbdDataSet.Mahasiswa);
 
         }
 
@@ -35,7 +35,7 @@ namespace Curudd
             }
             else if (othersRadioButton.Checked)
             {
-                MessageBox.Show("Gender cuma ada 2!");
+                MessageBox.Show("FUCK YALL SJW!");
                 return;
             }
             else if (!maleRadioButton.Checked && !femaleRadioButton.Checked)
@@ -47,8 +47,10 @@ namespace Curudd
             {
                 conn.Open();
                 SqlCommand cmd = conn.CreateCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = ("INSERT INTO [users] (name, email, birth, sex) VALUES (@Name, @Email, @Birth, @Sex)");
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "InsertMahasiswa";
+                // cmd.CommandType = CommandType.Text;
+                // cmd.CommandText = ("INSERT INTO Mahasiswa (name, email, birth, sex) VALUES (@Name, @Email, @Birth, @Sex)");
                 cmd.Parameters.AddWithValue("@Name", namee.Text);
                 cmd.Parameters.AddWithValue("@Email", emaill.Text);
                 cmd.Parameters.AddWithValue("@Birth", birthh.Value);
@@ -65,6 +67,12 @@ namespace Curudd
                 maleRadioButton.Checked = false;
                 femaleRadioButton.Checked = false;
             }
+        }
+
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
         }
     }
 }

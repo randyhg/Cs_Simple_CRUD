@@ -33,5 +33,16 @@ namespace Curudd.Properties {
                 return ((string)(this["userConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-NR11B30\\SQLEXPRESS;Initial Catalog=pbd;Integrated Security=Tr" +
+            "ue")]
+        public string pbdConnectionString {
+            get {
+                return ((string)(this["pbdConnectionString"]));
+            }
+        }
     }
 }
